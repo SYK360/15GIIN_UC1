@@ -1,5 +1,6 @@
 // Interfaz Conjunto
 // Cumple con lo descrito en el PDF. Solo hace falta implementar los comentarios.
+import java.util.Scanner;
 
 interface Conjunto<T> {
     void agregar(T elemento);
@@ -101,10 +102,31 @@ class Conjunto_ArrayList<T> implements Conjunto<T> {
 // Clase para probar las implementaciones
 public class Prueba_Conjunto {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Crear conjuntos c1 y c2
         Conjunto<Integer> c1 = new Conjunto_Array<>();
         Conjunto<Integer> c2 = new Conjunto_ArrayList<>();
 
-        // Aquí puedes añadir lógica para poblar y probar los conjuntos
-        // Por ejemplo, agregar elementos y luego hacer una unión
+        // Leer elementos para c1 desde la línea de comandos
+        System.out.println("Introduce los elementos para el conjunto c1 (Conjunto_Array), separados por espacios:");
+        String[] elementosC1 = scanner.nextLine().split(" ");
+        for (String elem : elementosC1) {
+            c1.agregar(Integer.parseInt(elem));
+        }
+
+        // Leer elementos para c2 desde la línea de comandos
+        System.out.println("Introduce los elementos para el conjunto c2 (Conjunto_ArrayList), separados por espacios:");
+        String[] elementosC2 = scanner.nextLine().split(" ");
+        for (String elem : elementosC2) {
+            c2.agregar(Integer.parseInt(elem));
+        }
+
+        // Realizar la unión de c1 y c2
+        c1.union(c2);
+
+        // Imprimir los conjuntos
+        System.out.println("Conjunto c1 (Conjunto_Array) después de la unión: " + c1);
+        System.out.println("Conjunto c2 (Conjunto_ArrayList): " + c2);
     }
 }
